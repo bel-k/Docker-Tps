@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+  </head>
+  <body>
+    <h1>Weather App</h1>
+    <p id="weather"></p>
+
+    <script>
+      // Replace YOUR_API_KEY with your actual API key
+      const apiKey = 'a2bfbb5f1609f60a07d4d739845fab48';
+      const city = 'LONDON';
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          const weather = data.weather[0].description;
+          const temperature = Math.round(data.main.temp - 273.15);
+
+          document.getElementById("weather").innerHTML = `The weather in London is ${weather} with a temperature of ${temperature} &deg;C.`;
+        });
+    </script>
+  </body>
+</html>
